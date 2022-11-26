@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+
+    <title>Employe Web Application</title>
+
+    <style>
+	body {
+		padding-top: 50px;
+	}
+	.special {
+		padding-top:50px;
+	}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href=".">Système d'evaluation des employees</a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container special">
+    <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+    <h2 class="h2">Liste des employées</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${employes.empty}">
+                <td colspan="3">Aucun employée en base de données</td>
+            </tr>
+            <tr th:each="employe: ${employes}">
+                <td><span th:text="${employe.nom}"> Nom </span></td>
+                <td><span th:text="${employe.prenom}"> Prenom </span></td>
+                <td><span th:text="${employe.tel}"> Telephone </span></td>
+                <td>
+                    <a th:href="@{/updateEmploye/{id}(id=${employe.id})}"><button class="btn btn-info">Modifier</button></a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <h4><a th:href="@{/dashboard}">Tableau de bord</a></h4>
+    <h4><a th:href="@{/createEmploye}">Ajouter un nouvel employée</a></h4>
+    <h4><a th:href="@{/login}">Se connecter</a></h4>
+    <h4><a th:href="@{/login}">S'inscrire</a></h4>
+    <h4><a th:href="@{/login1}">Se connecter New</a></h4>
+    <h4><a th:href="@{/accueil}">Accueil</a></h4>
+    <h4><a th:href="@{/register}">Register</a></h4>
+    <h4><a th:href="@{/registerEntre}">Register entreprise</a></h4>
+    <h4><a th:href="@{/ChoixProfil}">S'inscrire en tant que</a></h4>
+
+
+</div>
+
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
